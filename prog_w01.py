@@ -2,6 +2,7 @@ import glob, sys, sqlite3
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from colorama import Fore, Back, Style
 
 # Noms de colonnes à utiliser
 names = ['Code Domaine', 'Domaine', 'Code Pays', 'Pays', 'Code Élément',
@@ -20,9 +21,10 @@ print(f"parametres : {fns}")
 
 # Lecture puis affichage des info taille des CSV
 for fn in fns:
+    fns = fn[22:-4]
     df = pd.read_csv(fn, names=names, header=0)
     df.index = df['Code Pays']
-    print(f"- {fn:^50s} ({df.shape[0]:6d}, {df.shape[1]:2d})")
+    print(f"- {fn:50s} ({df.shape[0]:6d}, {df.shape[1]:2d}) - {Fore.BLACK}{Back.GREEN}{fns}{Style.RESET_ALL}")
     #print(df.columns)
     #print(df)
 
